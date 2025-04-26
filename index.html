@@ -2,60 +2,66 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Eilmeldung – Skandal im TV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sehen Sie sich eine exklusive Diskussion zu aktuellen Ereignissen im Fernsehen an. Live-Übertragung jetzt verfügbar.">
+  <title>Exklusive TV-Diskussion - Live-Übertragung</title>
   <style>
     body {
       margin: 0;
-      background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      text-align: center;
+      color: #333;
     }
-    .container {
-      position: relative;
-      width: 90%;
-      max-width: 500px;
+    header {
+      background-color: #ffffff;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    .container img {
-      width: 100%;
+    h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .content {
+      padding: 20px;
+    }
+    .content img {
+      max-width: 100%;
       height: auto;
-      border-radius: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      height: 80px;
-      background: radial-gradient(circle, rgba(255,0,0,0.7) 0%, rgba(255,0,0,0.3) 70%);
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: pulse 1.5s infinite;
-      cursor: pointer;
+    p {
+      font-size: 18px;
+      margin: 20px 0;
     }
-    .play-button::before {
-      content: '';
-      border-style: solid;
-      border-width: 15px 0 15px 25px;
-      border-color: transparent transparent transparent white;
-      margin-left: 5px;
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #0070f3;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 18px;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
     }
-    @keyframes pulse {
-      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
-      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    .button:hover {
+      background-color: #005bb5;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="https://raw.githubusercontent.com/tmildred222/new/refs/heads/main/Screenshot%202025-04-26%20at%2023.05.52.png" alt="Skandal Live TV">
-    <div class="play-button" onclick="window.location.href='https://your-dirty-link.com'"></div>
-  </div>
+
+<header>
+  <h1>Exklusive TV-Diskussion - Live-Übertragung</h1>
+</header>
+
+<div class="content">
+  <img src="https://raw.githubusercontent.com/tmildred222/new/refs/heads/main/Screenshot%202025-04-26%20at%2023.05.52.png" alt="Diskussion im Fernsehen">
+  <p>Erfahren Sie mehr über aktuelle Entwicklungen und spannende Interviews direkt im Fernsehen.</p>
+  <a href="#" class="button">Jetzt ansehen</a>
+</div>
+
 </body>
 </html>
