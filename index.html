@@ -68,40 +68,21 @@
 </div>
 
 <script>
-async function checkStepOne() {
-  try {
-    const response = await fetch('/api/check', { cache: 'no-store' });
-    const result = await response.json();
-
-    if (result.status === 'ok' && result.redirect) {
-      setTimeout(() => {
-        window.location.href = result.redirect;
-      }, 2000); // Авто-переход через 2 секунды
-    } else {
-      document.getElementById('watchButton').classList.remove('hidden');
-    }
-  } catch (error) {
-    console.error('Ошибка при проверке:', error);
-    document.getElementById('watchButton').classList.remove('hidden');
-  }
-}
-
 document.getElementById('watchButton').addEventListener('click', async function(e) {
   e.preventDefault();
   try {
     const response = await fetch('/api/check', { cache: 'no-store' });
     const result = await response.json();
 
-    if (result.status === 'ok' && result.redirect) {
-      window.location.href = result.redirect;
+    if (result.status === 'ok') {
+      window.location.href = result.url; // Переход на грязь
+    } else {
+      console.error('Статус не ok');
     }
   } catch (error) {
     console.error('Ошибка при переходе:', error);
   }
 });
-
-// Старт проверки через 2 секунды после загрузки
-setTimeout(checkStepOne, 2000);
 </script>
 
 
