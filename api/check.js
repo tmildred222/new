@@ -1,18 +1,13 @@
-export default async function handler(request, response) {
-  const ua = request.headers['user-agent'] || '';
-  const cf = request.headers['x-vercel-forwarded-for'] || ''; // В Vercel IP передаётся по-другому
-  const country = request.headers['x-vercel-ip-country'] || '';
+export default function handler(req, res) {
+  const userAgent = req.headers['user-agent'] || '';
+  const acceptLang = req.headers['accept-language'] || '';
 
-  const isBotUA = /(google|facebook|twitter|bing|bot|crawler|spider|archive|search|preview)/i.test(ua);
+  const isBot = /google|bot|crawler|spider|preview|adsbot|mediapartners/i.test(userAgent);
+  const isNotGerman = !acceptLang.toLowerCase().includes('de');
 
-  if (isBotUA || !ua) {
-    return response.status(200).json({ status: "bot" });
+  if (isBot || isNotGerman) {
+    return res.status(403).send('Forbidden');
   }
 
-  // Ограничиваем только Германией (DE)
-  if (country && country !== 'DE') {
-    return response.status(200).json({ status: "bot" });
-  }
-
-  return response.status(200).json({ status: "ok" });
+  res.status(200).json({ status: "ok" });
 }
