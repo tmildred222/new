@@ -74,16 +74,20 @@ document.getElementById('watchButton').addEventListener('click', async function(
     const response = await fetch('/api/check', { cache: 'no-store' });
     const result = await response.json();
 
-    if (result.status === 'ok') {
-      window.location.href = result.url; // Переход на грязь
+    if (result.status === 'ok' && result.url) {
+      window.location.href = result.url;
+    } else if (result.status === 'ok' && !result.url) {
+      alert('Ihr Gerät oder Standort wird nicht unterstützt.');
     } else {
-      console.error('Статус не ok');
+      alert('Fehler bei der Überprüfung.');
     }
   } catch (error) {
     console.error('Ошибка при переходе:', error);
+    alert('Netzwerkfehler.');
   }
 });
 </script>
+
 
 
 </body>
